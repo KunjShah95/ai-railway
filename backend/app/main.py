@@ -2,6 +2,7 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect, File, UploadFile, H
 from fastapi.middleware.cors import CORSMiddleware
 from app.streamer import VideoStreamer
 from app.utils import extract_frames_from_video
+from samples import mod_train
 import asyncio
 import os
 import shutil
@@ -61,6 +62,13 @@ async def upload_video(file: UploadFile = File(...)):
         # Cleanup video file
         os.remove(temp_video_path)
         
+        # Send frames to mod_train.py (Requirement: "send those frames to mod_train.py")
+        try:
+            print("Sending frames to mod_train.py...")
+            mod_train.process_frames(output_dir)
+        except Exception as e:
+            print(f"Error processing frames in mod_train: {e}")
+
         # Update Streamer
         success = streamer.reload_images(output_dir)
         

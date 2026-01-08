@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, User, Shield, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useDemo } from '@/context/DemoContext';
 import { auth } from '@/lib/firebase';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +12,7 @@ const LoginModal = ({ isOpen, onClose }) => {
     const [role, setRole] = useState('member'); // 'member' or 'admin'
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
+    const { login } = useDemo();
     const navigate = useNavigate();
 
     if (!isOpen) return null;
@@ -23,6 +25,7 @@ const LoginModal = ({ isOpen, onClose }) => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             console.log("Logged in successfully");
+            login({ email, role }); // Set global user state
             onClose();
             navigate('/dashboard');
         } catch (err) {
@@ -38,6 +41,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             try {
                 const googleProvider = new GoogleAuthProvider();
                 await signInWithPopup(auth, googleProvider);
+                login({ email: auth.currentUser?.email || 'Google User', role: 'member' });
                 onClose();
                 navigate('/dashboard');
             } catch (err) {
@@ -143,6 +147,17 @@ const LoginModal = ({ isOpen, onClose }) => {
                         {isLoading ? 'Signing In...' : 'Sign In'}
                     </Button>
                 </form>
+
+                {/* DEV ONLY: Bypass Login Button */}
+                <div className="mt-2 text-center">
+                    <button type="button" onClick={() => {
+                        login({ email: 'demo@railway.ai', role: 'admin' });
+                        onClose();
+                        navigate('/dashboard');
+                    }} className="text-xs text-blue-500 underline">
+                        (Dev) Bypass Login
+                    </button>
+                </div>
 
                 <div className="relative my-6">
                     <div className="absolute inset-0 flex items-center">

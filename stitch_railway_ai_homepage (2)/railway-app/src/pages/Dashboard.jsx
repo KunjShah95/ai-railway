@@ -38,7 +38,11 @@ const Dashboard = () => {
             setStatus(`Success! ${result.frames_extracted} frames extracted. Stream Updated.`);
         } catch (error) {
             console.error('Error:', error);
-            setStatus('Error uploading video.');
+            if (error.message && (error.message.includes('fetch') || error.message.includes('Failed to fetch'))) {
+                setStatus('Error: Cannot connect to backend server. Make sure it is running on port 8000.');
+            } else {
+                setStatus(`Error: ${error.message}`);
+            }
         } finally {
             setUploading(false);
         }
@@ -101,10 +105,10 @@ const Dashboard = () => {
 
                         {status && (
                             <div className={`p-4 rounded-lg text-sm font-medium flex items-center gap-2 ${status.startsWith('Success')
-                                    ? 'bg-green-500/10 text-green-400 border border-green-500/20'
-                                    : status.startsWith('Error')
-                                        ? 'bg-red-500/10 text-red-400 border border-red-500/20'
-                                        : 'bg-[#161e2e] text-slate-300'
+                                ? 'bg-green-500/10 text-green-400 border border-green-500/20'
+                                : status.startsWith('Error')
+                                    ? 'bg-red-500/10 text-red-400 border border-red-500/20'
+                                    : 'bg-[#161e2e] text-slate-300'
                                 }`}>
                                 {status.startsWith('Success') && <CheckCircle size={16} />}
                                 {status}
