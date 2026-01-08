@@ -57,36 +57,43 @@ const ProblemSolution = () => {
                     </div>
 
                     {/* Interactive Comparison Card */}
+                    {/* Interactive Comparison Card */}
                     <div className="lg:w-1/2 w-full">
                         <div
                             ref={containerRef}
                             className="relative aspect-video rounded-xl overflow-hidden border border-[#232f48] shadow-2xl group select-none"
                         >
-                            {/* After Image (Clear) */}
-                            <div className="absolute inset-0 bg-cover bg-center z-0" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCQmzX2v-JO3lxEv_DvHLhYIED7-CiQbkTy1MlZsIvxyBt2DlyZq3aWtTRUQ2NLJ1WlTqO6oiwtdYY_KPqEePAqkpVlbLa9i2v83eC39LDTo4YnsWWy9H9DG0e-dE2eHdhAdkCidgeVxOkoCve_7lsz34FfzvHafOx8vI8ZYvU0tJCCHrOj1LHXZfB6Sp-ZIBm3mvjj9TMmWZYuQGVW2Pr7vCE29jFtq49Ls0iZ_fmQySsDf5Bd780fnWPql_nGKrxIJmT64J2uWLW5")', filter: 'contrast(1.2) saturate(1.1)' }}>
-                                {/* Mock AI Bounding Boxes */}
-                                <div className="absolute top-[40%] left-[30%] w-[100px] h-[80px] border-2 border-primary bg-primary/10 flex items-start justify-start">
-                                    <span className="bg-primary text-white text-[10px] px-1">Wheelset OK</span>
-                                </div>
-                                <div className="absolute top-[35%] right-[20%] w-[80px] h-[60px] border-2 border-red-500 bg-red-500/10 flex items-start justify-start animate-pulse">
-                                    <span className="bg-red-500 text-white text-[10px] px-1">Wear Detected</span>
+                            {/* Background Image (Blurred - Right Side) */}
+                            <div className="absolute inset-0 bg-cover bg-center z-0" style={{
+                                backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCQmzX2v-JO3lxEv_DvHLhYIED7-CiQbkTy1MlZsIvxyBt2DlyZq3aWtTRUQ2NLJ1WlTqO6oiwtdYY_KPqEePAqkpVlbLa9i2v83eC39LDTo4YnsWWy9H9DG0e-dE2eHdhAdkCidgeVxOkoCve_7lsz34FfzvHafOx8vI8ZYvU0tJCCHrOj1LHXZfB6Sp-ZIBm3mvjj9TMmWZYuQGVW2Pr7vCE29jFtq49Ls0iZ_fmQySsDf5Bd780fnWPql_nGKrxIJmT64J2uWLW5")',
+                                filter: 'blur(5px) brightness(0.7)'
+                            }}>
+                                <div className="absolute inset-0 flex items-center justify-end pr-10">
+                                    <div className="bg-black/50 p-2 rounded text-white text-xs font-mono">RAW INPUT</div>
                                 </div>
                             </div>
 
-                            {/* Before Image (Blurred) */}
-                            <div className="absolute inset-0 bg-cover bg-center z-10 border-r-2 border-white" style={{
-                                width: `${sliderPosition}%`,
-                                backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAA_SgwqfY7zTMvUMkXmMqwmL4QNVe9O7hYwzKBsiBRSTYN7Tua2UpnDxcvF7LFsJfEQbpiqUDt52eAbNiHLdF8rgyFtCI-wwWMx1oc2zB68DHfoCF1P1jcoap2YSSL3YBHGcI5d8CuvAodz4OdTzrZcynQO26irYd2bSrVpvhlhrWozLUcJY8OIOFM0itX9w_2oyhfImX9QDsrGMca_4eYnCrjsQcA_JAJOoYoQCy9YalyhHkgvDJ3NJNd7aLC482hNRUt_0ysujT4")',
-                                filter: 'url(#motionBlur) brightness(0.9)'
+                            {/* Foreground Image (Clear - Left Side) */}
+                            <div className="absolute inset-0 bg-cover bg-center z-10" style={{
+                                clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
+                                backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCQmzX2v-JO3lxEv_DvHLhYIED7-CiQbkTy1MlZsIvxyBt2DlyZq3aWtTRUQ2NLJ1WlTqO6oiwtdYY_KPqEePAqkpVlbLa9i2v83eC39LDTo4YnsWWy9H9DG0e-dE2eHdhAdkCidgeVxOkoCve_7lsz34FfzvHafOx8vI8ZYvU0tJCCHrOj1LHXZfB6Sp-ZIBm3mvjj9TMmWZYuQGVW2Pr7vCE29jFtq49Ls0iZ_fmQySsDf5Bd780fnWPql_nGKrxIJmT64J2uWLW5")',
+                                filter: 'contrast(1.2) saturate(1.1)'
                             }}>
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    <div className="bg-black/50 p-2 rounded text-white text-xs font-mono">RAW INPUT</div>
+                                {/* Mock AI Bounding Boxes - Only Visible on Clear Side */}
+                                <div className="absolute inset-0 overflow-hidden">
+                                    <div className="absolute top-[40%] left-[30%] w-[100px] h-[80px] border-2 border-primary bg-primary/10 flex items-start justify-start">
+                                        <span className="bg-primary text-white text-[10px] px-1">Wheelset OK</span>
+                                    </div>
+                                    <div className="absolute top-[35%] right-[20%] w-[80px] h-[60px] border-2 border-red-500 bg-red-500/10 flex items-start justify-start animate-pulse">
+                                        <span className="bg-red-500 text-white text-[10px] px-1">Wear Detected</span>
+                                    </div>
                                 </div>
                             </div>
 
                             {/* Drag Handle Visual */}
                             <div className="absolute inset-y-0 z-20 flex items-center justify-center pointer-events-none" style={{ left: `${sliderPosition}%` }}>
-                                <div className="w-8 h-8 -ml-4 bg-white rounded-full flex items-center justify-center shadow-lg text-black">
+                                <div className="absolute top-0 bottom-0 w-0.5 bg-primary/50"></div>
+                                <div className="w-8 h-8 -ml-4 bg-white rounded-full flex items-center justify-center shadow-lg text-black z-10">
                                     <span className="material-symbols-outlined text-sm">compare_arrows</span>
                                 </div>
                             </div>
@@ -105,7 +112,6 @@ const ProblemSolution = () => {
                     </div>
                 </div>
             </div>
-
             {/* SVG Filter for Motion Blur */}
             <svg className="absolute w-0 h-0" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -114,7 +120,7 @@ const ProblemSolution = () => {
                     </filter>
                 </defs>
             </svg>
-        </section>
+        </section >
     );
 };
 

@@ -10,10 +10,13 @@ import UseCases from '@/pages/UseCases';
 import Solution from '@/pages/Solution';
 import Dashboard from '@/pages/Dashboard';
 
+import ScrollToTop from '@/components/layout/ScrollToTop';
+
 function App() {
   return (
     <DemoProvider>
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
