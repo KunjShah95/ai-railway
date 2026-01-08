@@ -2,7 +2,10 @@ import React from 'react';
 
 import { useDemo } from '@/context/DemoContext';
 
+import scratchImage from '@/assets/scratch_detected.png';
+
 const MainViewer = () => {
+
     const { isDemoMode, openDemoModal } = useDemo();
     const [viewMode, setViewMode] = React.useState('2d'); // '2d' or '3d'
     const [zoomLevel, setZoomLevel] = React.useState(1);
@@ -194,8 +197,8 @@ const MainViewer = () => {
                             </div>
                         </div>
                     )}
-                    <div onClick={() => setSelectedAnomaly({ id: '09', type: 'Scratch', severity: 'Minor', time: '09:35 AM', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAW5eaG1UopCwhwwjBuUqUMhkwEI0ur56HJLj_CoGMaqhqGXXfIjdo8XBkd7pSdJis1GGbaiF6Ia3IjfBwY3GEsEOJewSZdKXqR5kWYbGDC2-iIrIh31fCSjUGFTPqDnMM0uXUEslx1zdaADvIiP7_WOtVRaX2b1unmKSB-68sEfhnWwydsSgmo9swwQGCsB6pdhEFL7CQWNDw1SkYpOLh30KN3rECWLbjq_9ypukO94F6FZzpgo9LRVHzxUxAxxtdEQ8dVEJkWUDec', description: 'Minor surface scratch on exterior paint.' })} className="min-w-[140px] h-full bg-[#111722] rounded-lg border border-[#324467] relative overflow-hidden group cursor-pointer hover:border-primary transition-colors">
-                        <img className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW5eaG1UopCwhwwjBuUqUMhkwEI0ur56HJLj_CoGMaqhqGXXfIjdo8XBkd7pSdJis1GGbaiF6Ia3IjfBwY3GEsEOJewSZdKXqR5kWYbGDC2-iIrIh31fCSjUGFTPqDnMM0uXUEslx1zdaADvIiP7_WOtVRaX2b1unmKSB-68sEfhnWwydsSgmo9swwQGCsB6pdhEFL7CQWNDw1SkYpOLh30KN3rECWLbjq_9ypukO94F6FZzpgo9LRVHzxUxAxxtdEQ8dVEJkWUDec" alt="Scratch" />
+                    <div onClick={() => setSelectedAnomaly({ id: '09', type: 'Scratch', severity: 'Minor', time: '09:35 AM', image: scratchImage, description: 'Minor surface scratch on exterior paint.' })} className="min-w-[140px] h-full bg-[#111722] rounded-lg border border-[#324467] relative overflow-hidden group cursor-pointer hover:border-primary transition-colors">
+                        <img className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src={scratchImage} alt="Scratch" />
                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-2">
                             <p className="text-xs font-bold text-white">Scratch #09</p>
                             <p className="text-[10px] text-gray-400">09:35 AM</p>
