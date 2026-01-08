@@ -43,9 +43,11 @@ const Navbar = () => {
                         >
                             <span>Log In</span>
                         </button>
-                        <Button onClick={openDemoModal} className="font-bold shadow-[0_0_15px_rgba(19,91,236,0.5)]">
-                            Request Demo
-                        </Button>
+                        <Link to="/demo">
+                            <Button className="font-bold shadow-[0_0_15px_rgba(19,91,236,0.5)]">
+                                Request Demo
+                            </Button>
+                        </Link>
                         <div className="md:hidden text-white cursor-pointer" onClick={toggleMobileMenu}>
                             <span className="material-symbols-outlined">menu</span>
                         </div>
@@ -66,7 +68,9 @@ const Navbar = () => {
                         >
                             Log In
                         </button>
-                        <Button onClick={openDemoModal} className="w-full font-bold">Request Demo</Button>
+                        <Link to="/demo" className="w-full">
+                            <Button className="w-full font-bold">Request Demo</Button>
+                        </Link>
                     </div>
                 )}
             </header>
