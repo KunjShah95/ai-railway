@@ -107,10 +107,11 @@ const MainViewer = () => {
 
                     {/* The Train Image */}
                     <div
-                        className={`relative w-[90%] max-w-[500px] transition-transform duration-100 z-10 ${zoomLevel > 1 ? 'cursor-grab active:cursor-grabbing' : ''}`}
+                        className={`relative w-[90%] max-w-[500px] z-10 ${zoomLevel > 1 ? 'cursor-grab active:cursor-grabbing' : ''}`}
                         style={{
                             transform: `translate(${panPosition.x}px, ${panPosition.y}px) scale(${zoomLevel}) ${viewMode === '3d' ? 'rotateY(15deg) rotateX(5deg)' : 'rotateY(0deg)'}`,
                             filter: showLayers ? 'sepia(100%) hue-rotate(190deg) saturate(500%)' : 'none',
+                            transition: isPanDragging ? 'none' : 'transform 0.3s ease-out'
                         }}
                         onMouseDown={handlePanStart}
                         onTouchStart={handlePanStart}
