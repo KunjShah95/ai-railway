@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 
+import { Link } from 'react-router-dom';
+import { useDemo } from '@/context/DemoContext';
+
 const Hero = () => {
+    const { openDemoModal } = useDemo();
     return (
         <div className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
             {/* Background with Gradient Overlay */}
