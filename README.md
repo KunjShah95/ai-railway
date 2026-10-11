@@ -230,3 +230,11 @@ To achieve real-time performance on embedded hardware:
 | **"CUDA not available"** | PyTorch installed without CUDA support. | Reinstall PyTorch with CUDA: `pip install torch --index-url https://download.pytorch.org/whl/cu118` |
 | **Video Lag / Low FPS** | Running on CPU instead of GPU. | Reduce video resolution or switch to GPU inference. |
 | **Module Not Found** | Virtual environment not activated. | Activate venv and run `pip install -r requirements.txt`. |
+
+---
+
+## Case study
+
+The full write-up of Railway Inspection (problem, architecture, trade-offs and results) lives at **[kunjshah.in/projects/railway-inspection](https://kunjshah.in/projects/railway-inspection)**.
+
+Built by [Kunj Shah](https://kunjshah.in), AI engineer.
